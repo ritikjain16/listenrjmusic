@@ -63,8 +63,8 @@ app.get("/getcustomsong", async (req, res) => {
 
 app.get("/get/unlimited/songs", async (req, res) => {
   try {
-    let page = req.query.page || 1;
-    let limit = req.query.limit || 5;
+    let page = Number(req.query.page) || 1;
+    let limit = Number(req.query.limit) || 5;
     let skip = (page - 1) * limit;
     const data = await Song.find().skip(skip).limit(limit);
     res.status(200).send(data);
